@@ -10,7 +10,6 @@ services:
       - "USER=ansible"
     volumes:
       # mount docker volumes persistant inside docker container
-      - ansible-data:/data
       - ansible-user:/home/ansible
 
   cli1:
@@ -41,8 +40,6 @@ volumes:
   ansible-cli1-config:
     driver: local
   ansible-cli2-config:
-    driver: local
-  ansible-data:
     driver: local
   ansible-user:
     driver: local
