@@ -1,7 +1,7 @@
 # docker run -d --name systemd-debian --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro jrei/systemd-debian:10
 FROM jrei/systemd-debian:10
 
-RUN apt-get update && apt-get install -y openssh-server && \
+RUN apt-get update && apt-get install -y openssh-server python3-minimal && \
     apt-get clean && \
     rm -rf /var/cache/apt/* && \
     rm -rf /var/lib/apt/lists/*
