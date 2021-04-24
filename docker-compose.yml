@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  ctrl:
+    image: cytopia/ansible:latest-tools
+    hostname: ansible-ctrl-node
+    environment:
+      - "USER=ansible"
+    volumes:
+      # mount docker volumes persistant inside docker container
+      - ansible-data:/data
+      - ansible-user:/home/ansible
+
+  cli1:
+    build: deb10
+    hostname: test-node-01
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    volumes:
+      - ansible-cli1-config:/config
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    restart: unless-stopped
+
+  cli2:
+    build: deb10
+    hostname: test-node-02
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    volumes:
+      - ansible-cli1-config:/config
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    restart: unless-stopped
+
+volumes:
+  ansible-cli1-config:
+    driver: local
+  ansible-cli2-config:
+    driver: local
+  ansible-data:
+    driver: local
+  ansible-user:
+    driver: local
