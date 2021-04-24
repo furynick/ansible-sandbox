@@ -10,7 +10,7 @@ services:
       - "USER=ansible"
     volumes:
       # mount docker volumes persistant inside docker container
-      - ansible-user:/home/ansible
+      - ./user:/home/ansible
 
   cli1:
     build: deb10
@@ -40,6 +40,4 @@ volumes:
   ansible-cli1-config:
     driver: local
   ansible-cli2-config:
-    driver: local
-  ansible-user:
     driver: local
