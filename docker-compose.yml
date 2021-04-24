@@ -4,6 +4,8 @@ services:
   ctrl:
     image: cytopia/ansible:latest-tools
     hostname: ansible-ctrl-node
+    stdin_open: true
+    tty: true
     environment:
       - "USER=ansible"
     volumes:
